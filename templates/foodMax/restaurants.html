@@ -1,0 +1,108 @@
+{% extends 'foodMax/base_generic.html' %}
+{% load static %}
+{% block body %}
+    <section class="generic-banner relative"
+             style="height:310px !important;background: #f42f2c url({% static 'img/new.jpg' %}) right;">
+        <div class="container">
+            <div class="row  align-items-center justify-content-center" style="padding-top:100px;">
+                <div class="col-lg-10">
+                    <div id="rest_found" class="generic-banner-content">
+                        <h2 style="font-size: 40px !important;" class=" text-white">{{ number_of_restaurants_found }}
+                            {% if number_of_restaurants_found == 1 %}restaurant{% else %}restaurants{% endif %}
+                            found</h2>
+                        <p style="font-size: 20px !important;" class="text-white">Select a restaurant and dish and we
+                            would do the rest.</p>
+                        <div style="display: inline-block">
+                            <p class="text-white"><i class="fa fa-map-marker" aria-hidden="true"></i> {{ search_word }}
+                            </p>
+                            <a onclick="change_location()" href="#" class="genric-btn danger-border">Change Location</a>
+                        </div>
+                    </div>
+                    <div class="generic-banner-content" id="new_location" style="display: none">
+                        <h2 style="color: #fff">Select your location</h2>
+                        <div class="input-group-icon mt-10">
+                            <div class="icon"><i class="fa fa-map-marker text-danger" aria-hidden="true"></i></div>
+                            <div class="form-select" id="default-select">
+                                <form id="#rest" method="post" action="{% url 'restaurant' %} ">
+                                    {% csrf_token %}
+                                    <select name="location">
+                                        {% if coverage %}
+                                            {% for city in coverage %}
+                                                <option value="{{ city.name }}">{{ city.name }}</option>
+                                            {% endfor %}
+                                        {% endif %}
+                                    </select>
+                                    <input type="submit" class="genric-btn danger-border text-uppercase"
+                                           style="margin-top: 20px; text-align: center" value="Find restaurants"/>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End banner Area -->
+
+    <!-- About Generic Start -->
+    <div class="main-wrapper">
+        <!-- Start team Area -->
+        <section class="team-area pt-100" id="team" style="margin-top: -50px">
+            <div class="container">
+                <nav aria-label="breadcrumb" style="font-size: 13px;margin-left: -12px;">
+                    <ol class="breadcrumb" style="background: #f9f9ff">
+                        <li class="breadcrumb-item"><a class="text-danger" href="{% url 'home' %}">Home</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Restaurants</li>
+                    </ol>
+                </nav>
+                <h3 class="mb-30">{{ search_word }} Restaurants</h3>
+                {% if restaurant %}
+                    {% for restaurant in restaurant %}
+
+                        {% if forloop.counter0|divisibleby:3 %}
+                            <div class="row">{% endif %}
+                    <div class="single-dish col-lg-4">
+                        <div class="thumb">
+                            <a href="{{ restaurant.get_absolute_url }}"> <img class="img-fluid"
+                                                                              src="{{ restaurant.logo.url }}"
+                                                                              style="height:250px"></a>
+                        </div>
+                        <h4 class="text-uppercase pt-10 pb-0"><a class="text-danger"
+                                                                 href="{{ restaurant.get_absolute_url }}">{{ restaurant.name }}</a>
+                        </h4>
+                        <p style="padding-bottom: -6% !important;"><a class="text-muted"
+                                                                      href="{{ restaurant.get_absolute_url }}">Healthy •
+                            Juice and Smoothies • Vegetarian •
+                            Acai</a></p>
+                        <p><span class="rest_back">4.5 <i style="color: gold" class="fa fa-star"></i> <span
+                                style="color: #A4A4AC; font-family: SansSerif,sans-serif;">(176)</span></span>
+                            <span
+                                    class="rest_back">&#8358;&#8358;</span> <span
+                                    class="rest_back">
+
+                                {% for coverage in restaurant.coverage.all %}
+                                    {{ coverage.time_needed }} min
+                                {% endfor %}
+                            </span></p>
+                    </div>
+                    {% if forloop.counter|divisibleby:3 or forloop.last %}</div><!-- row closing -->
+                        <hr>{% endif %}
+                    {% endfor %}
+                {% else %}
+                    <p>No restaurant available</p>
+                {% endif %}
+            </div>
+        </section>
+    </div>
+
+    {% block script %}
+        <script>
+            function change_location() {
+                $('#rest_found').slideUp(function () {
+                    $('#new_location').show();
+                })
+            }
+        </script>
+    {% endblock %}
+{% endblock %}
