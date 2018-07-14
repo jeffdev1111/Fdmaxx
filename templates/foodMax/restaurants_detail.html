@@ -43,7 +43,7 @@
         <div class="container" id="navbarCodeply">
             <ul class="category">
                 {% for item in restaurant.menu.all %}
-                    <li><a class="anchor" href="#{{ item.name }}">{{ item.name }}</a></li>
+                    <li><a class="anchor" href="#{{ item.name|cut:" " }}">{{ item.name }}</a></li>
                 {% endfor %}
             </ul>
         </div>
@@ -67,7 +67,7 @@
                 <div class="row">
                     <div class="col-md-8">
                         {% for menu in restaurant.menu.all %}
-                            <h3 id="{{ menu.name }}" class="mb-30">{{ menu.name|capfirst }}</h3>
+                            <h3 id="{{ menu.name|cut:" " }}" class="mb-30">{{ menu.name|capfirst }}</h3>
 
                             <div class="row" style="margin-bottom: 37px">
                                 {% for sub in menu.dish.all %}
@@ -103,7 +103,8 @@
                     <!---Checkout Section--->
                     <div class="col-md-4" style="margin-top: 60px;">
                         <div class="sticky-top j_card_header" style="top: 120px;">
-                            <a href="{% url 'email_order' %}?restaurant={{ restaurant.id }}" class="genric-btn primary radius  text-white"
+                            <a href="{% url 'email_order' %}?restaurant={{ restaurant.id }}"
+                               class="genric-btn primary radius  text-white"
                                style="width: 100%; top:120px; background: #dc3545 !important; font-size: 16px">Checkout</a>
                             <hr style="margin-bottom: -48px;"/>
                             <br/>

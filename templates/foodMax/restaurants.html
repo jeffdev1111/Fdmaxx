@@ -81,8 +81,8 @@
                                     class="rest_back">&#8358;&#8358;</span> <span
                                     class="rest_back">
 
-                                {% for coverage in restaurant.coverage.all %}
-                                    {{ coverage.time_needed }} min
+                                {% for coverage in restaurant.coverage_set.all %}
+                                    {{ coverage.name }} min
                                 {% endfor %}
                             </span></p>
                     </div>
