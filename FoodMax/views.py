@@ -1,7 +1,7 @@
 import json
 
 from django.core.mail import send_mail
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpRequest, request
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import *
 from carton.cart import Cart
@@ -19,9 +19,11 @@ def index(request):
 
 
 def restaurants(request):
-    coverage = Coverage.objects.all()
     searchWord = request.POST.get('location', '')
+
+    # coverage = Coverage.objects.filter(restaurant__address__in=searchWord).values('time_needed')
     restaurants_found = Restaurant.objects.filter(coverage__name__icontains=searchWord)
+    coverage = Coverage.objects.filter(restaurant__name=restaurants_found[0])
     number_of_restaurants_found = Restaurant.objects.filter(coverage__name__icontains=searchWord).count()
     if searchWord == "":
         return redirect('home')
@@ -88,3 +90,8 @@ def email_order(request):
     restaurant = get_object_or_404(Restaurant, pk=request.GET.get('restaurant'))
     send_mail('New Order', json.dumps(cart), 'foodmax@jaytechx.com', [restaurant.email, ])
     return HttpResponse("Email sent")
+
+
+from django.dispatch import receiver
+from django.core.signals import request_finished
+
