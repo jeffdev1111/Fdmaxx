@@ -64,32 +64,25 @@
                             <div class="row">{% endif %}
                     <div class="single-dish col-lg-4">
                         <div class="thumb">
-                            <a href="{{ restaurant.get_absolute_url }}"> <img class="img-fluid"
-                                                                              src="{{ restaurant.logo.url }}"
-                                                                              style="height:250px"></a>
+                            <a href="{{ restaurant.get_absolute_url }}?ln={% for i in coverageIndex %}{{ i.id }}{% endfor %}"> <img class="img-fluid"
+                                                                                           src="{{ restaurant.logo.url }}"
+                                                                                           style="height:250px"></a>
                         </div>
                         <h4 class="text-uppercase pt-10 pb-0"><a class="text-danger"
                                                                  href="{{ restaurant.get_absolute_url }}">{{ restaurant.name }}</a>
                         </h4>
                         <p style="padding-bottom: -6% !important;"><a class="text-muted"
-                                                                      href="{{ restaurant.get_absolute_url }}">Healthy •
-                            Juice and Smoothies • Vegetarian •
-                            Acai</a></p>
+                                                                      href="{{ restaurant.get_absolute_url }}">{{ restaurant.tag_line }}</a>
+                        </p>
                         <p><span class="rest_back">4.5 <i style="color: gold" class="fa fa-star"></i> <span
                                 style="color: #A4A4AC; font-family: SansSerif,sans-serif;">(176)</span></span>
                             <span
                                     class="rest_back">&#8358;&#8358;</span> <span
                                     class="rest_back">
 
-                                {% for coverage in restaurant.coverage_set.all %}
-                                    {{ coverage.name }} min
+                                {% for coverage in coverageDetail %}
+                                    {{ coverage.time_needed }} min
                                 {% endfor %}
-
-                            {% for i in coverage.time_needed %}
-                                {{ i}}
-                                {% endfor %}
-
-
                             </span></p>
                     </div>
                     {% if forloop.counter|divisibleby:3 or forloop.last %}</div><!-- row closing -->

@@ -27,9 +27,16 @@
                                     class="rest_back">&#8358;&#8358;</span> <span
                                     class="rest_back">
 
-                                {% for coverage in restaurant.coverage.all %}
-                                    {{ coverage.time_needed }} min
+{#                                {% for coverage in restaurant.coverage.all %}#}
+{#                                    {{ coverage.time_needed }} min#}
+{#                                {% endfor %}#}
+{#                                {% for coverage in coverageDetail %}#}
+{#                                    {{ coverage.time_needed }} min#}
+{#                                {% endfor %}#}
+                                {% for i in coverageDetail %}
+                                    {{ i.time_needed }}min
                                 {% endfor %}
+
                             </span></p>
                     </div>
                 </div>
@@ -249,12 +256,6 @@
                     }
                 })
             }
-
-            //function live() {
-            //  $("#checkout_box").load("{% url 'restaurant_detail' restaurant.id%} #checkout_box");
-            //}
-
-            setInterval(live, 1000);
 
         </script>
     {% endblock %}

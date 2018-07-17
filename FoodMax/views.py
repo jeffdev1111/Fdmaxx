@@ -1,7 +1,7 @@
 import json
 
 from django.core.mail import send_mail
-from django.http import HttpResponse, HttpRequest, request
+from django.http import HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import *
 from carton.cart import Cart
@@ -19,17 +19,19 @@ def index(request):
 
 
 def restaurants(request):
+    coverage = Coverage.objects.all()
     searchWord = request.POST.get('location', '')
-
-    # coverage = Coverage.objects.filter(restaurant__address__in=searchWord).values('time_needed')
+    coverageIndex = Coverage.objects.filter(name__icontains=searchWord)
+    coverageDetail = CoverageDetail.objects.filter(coverage__name__icontains=searchWord)
     restaurants_found = Restaurant.objects.filter(coverage__name__icontains=searchWord)
-    coverage = Coverage.objects.filter(restaurant__name=restaurants_found[0])
     number_of_restaurants_found = Restaurant.objects.filter(coverage__name__icontains=searchWord).count()
     if searchWord == "":
         return redirect('home')
     else:
         location = "foodMax/restaurants.html"
         return render(request, location, context={
+            'coverageDetail': coverageDetail,
+            'coverageIndex': coverageIndex,
             'search_word': searchWord,
             'restaurant': restaurants_found,
             'coverage': coverage,
@@ -39,10 +41,13 @@ def restaurants(request):
 
 def restaurants_detail(request, pk):
     cart = Cart(request.session)
+    location = request.GET.get('ln')
     restaurant = get_object_or_404(Restaurant, pk=pk)
+    coverageDetail = CoverageDetail.objects.filter(restaurant__id=pk).filter(coverage_id=location)
     price = cart.total
     return render(request, 'foodMax/restaurants_detail.html', context={
         'restaurant': restaurant,
+        'coverageDetail': coverageDetail,
         'cart': cart,
         'price': price
     })
@@ -53,10 +58,6 @@ def add(request):
     product = Submenu.objects.get(id=request.GET.get('dish_id'))
     cart.add(product, price=product.price)
     return HttpResponse("Added")
-
-
-def show(request):
-    return render(request, 'foodMax/checkout.html')
 
 
 def remove(request):
@@ -91,7 +92,5 @@ def email_order(request):
     send_mail('New Order', json.dumps(cart), 'foodmax@jaytechx.com', [restaurant.email, ])
     return HttpResponse("Email sent")
 
-
-from django.dispatch import receiver
-from django.core.signals import request_finished
-
+def checkout(request):
+    return render(request,'foodMax/checkout.html')
