@@ -16,23 +16,14 @@
                                                                          href="{{ restaurant.get_absolute_url }}">{{ restaurant.name }}</a>
                         </h4><br/>
                         <p style="padding-bottom: -6% !important;text-align: left"><a class="text-muted"
-                                                                                      href="{{ restaurant.get_absolute_url }}">Healthy
-                            •
-                            Juice and Smoothies • Vegetarian •
-                            Acai</a></p>
+                                                                                      href="{{ restaurant.get_absolute_url }}">{{ restaurant.tag_line }}</a>
+                        </p>
                         <p style="text-align: left"><span class="rest_back">4.5 <i style="color: gold"
                                                                                    class="fa fa-star"></i> <span
                                 style="color: #A4A4AC; font-family: SansSerif,sans-serif;">(176)</span></span>
                             <span
                                     class="rest_back">&#8358;&#8358;</span> <span
                                     class="rest_back">
-
-{#                                {% for coverage in restaurant.coverage.all %}#}
-{#                                    {{ coverage.time_needed }} min#}
-{#                                {% endfor %}#}
-{#                                {% for coverage in coverageDetail %}#}
-{#                                    {{ coverage.time_needed }} min#}
-{#                                {% endfor %}#}
                                 {% for i in coverageDetail %}
                                     {{ i.time_needed }}min
                                 {% endfor %}
@@ -58,7 +49,7 @@
 
 
     <!-- About Generic Start -->
-    <div class="main-wrapper">
+    <div class="main-wrapper" id="main_box">
         <!-- Start team Area -->
         <section class="team-area pt-100" id="team" style="margin-top: -50px">
             <div class="container">
@@ -72,43 +63,46 @@
                     </ol>
                 </nav>
                 <div class="row">
-                    <div class="col-md-8">
-                        {% for menu in restaurant.menu.all %}
-                            <h3 id="{{ menu.name|cut:" " }}" class="mb-30">{{ menu.name|capfirst }}</h3>
+                    {% if check == True %}
+                        <div class="col-md-8">{% else %}
+                        <div class="col-md-12">{% endif %}
+                    {% for menu in restaurant.menu.all %}
+                        <h3 id="{{ menu.name|cut:" " }}" class="mb-30">{{ menu.name|capfirst }}</h3>
 
-                            <div class="row" style="margin-bottom: 37px">
-                                {% for sub in menu.dish.all %}
+                        <div class="row" style="margin-bottom: 37px">
+                            {% for sub in menu.dish.all %}
 
-                                    <div id="{{ sub.id }}{{ menu.name }}"
-                                         onclick="AjaxAdd('{% url 'add_to_cart' %}?dish_id={{ sub.id }}')"
-                                         class="col-md-6 col-sm-6 jclick">
-                                        <div class="dish_box">
-                                            {% if forloop.counter0|divisibleby:1 %}
-                                                <div class="row flex-nowrap">{% endif %}
-                                            <div class="col-md-8">
-                                                <br/>
-                                                <p id="{{ sub.id }}{{ menu.name }}_menu_name"
-                                                   class="dish_header text-danger">{{ sub.name }} - Meal</p>
-                                                <p>Price : &#8358;{{ sub.price|intcomma }}</p>
+                                <div id="{{ sub.id }}{{ menu.name }}"
+                                     onclick="AjaxAdd('{% url 'add_to_cart' %}?dish_id={{ sub.id }}&dr={{ restaurant.id }}')"
+                                     class="{% if check == True %}col-md-6 col-sm-6 {% else %} col-md-4 col-sm-4 {% endif %}jclick">
+                                    <div class="dish_box">
+                                        {% if forloop.counter0|divisibleby:1 %}
+                                            <div class="row flex-nowrap">{% endif %}
+                                        <div class="col-md-8">
+                                            <br/>
+                                            <p id="{{ sub.id }}{{ menu.name }}_menu_name"
+                                               class="dish_header text-danger">{{ sub.name }} - Meal</p>
+                                            <p>Price : &#8358;{{ sub.price|intcomma }}</p>
 
-                                            </div>
-                                            <div class="col-md-4 col-sm-6 text-danger">
-                                                <img src="{{ sub.dish_image.url }}"
-                                                     style="height: 80px; width: 100%;background-position: center center;">
-                                            </div>
-                                            {% if forloop.counter|divisibleby:1 or forloop.last %}</div>{% endif %}
                                         </div>
-                                        {#                                        </a>#}
-
+                                        <div class="col-md-4 col-sm-6 text-danger">
+                                            <img src="{{ sub.dish_image.url }}"
+                                                 style="height: 80px; width: 100%;background-position: center center;">
+                                        </div>
+                                        {% if forloop.counter|divisibleby:1 or forloop.last %}</div>{% endif %}
                                     </div>
+                                    {#                                        </a>#}
 
-                                {% endfor %}
-                            </div>
-                        {% endfor %}
+                                </div>
+
+                            {% endfor %}
+                        </div>
+                    {% endfor %}
                     </div>
 
                     <!---Checkout Section--->
-                    <div class="col-md-4" style="margin-top: 60px;">
+                    <div class="col-md-4"
+                         style="margin-top: 60px; {% if check == False %}display:none{% else %}{% endif %}">
                         <div class="sticky-top j_card_header" style="top: 120px;">
                             <a href="{% url 'email_order' %}?restaurant={{ restaurant.id }}"
                                class="genric-btn primary radius  text-white"
@@ -136,7 +130,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4">
-                                                    <p>{{ item.product.name }}
+                                                    <p>{{ item.product.name }} - {{ restaurant_selected_cart }}
 
                                                     </p></div>
                                                 <div class="col-md-4">
@@ -167,96 +161,151 @@
                         </div>
                     </div>
 
+                    </div>
                 </div>
-            </div>
 
 
-            <br/>
+                <br/>
         </section>
     </div>
 
 
-    {% block script %}
-        <script>
-            $("#mini").scrollspy(
-                {
-                    offset: -145,
-                    animate: true
+
+{% endblock %}
+{% block script %}
+    <script>
+
+        function showM() {
+            $('#cartModel').modal(show = true)
+        }
+
+        function hideM() {
+            $('#cartModel').modal('hide')
+        }
+
+        $("#mini").scrollspy(
+            {
+                offset: -145,
+                animate: true
+            }
+        );
+
+        function add_quantity(add_url) {
+            NProgress.start();
+
+            $.ajax({
+                url: add_url,
+                success: function () {
+                    $("#checkout_box").load("{% url 'restaurant_detail' restaurant.id%} #checkout_box", function () {
+                        NProgress.done();
+                    });
+                },
+                error: function () {
+                    alert("Couldn't increment quantity");
+                    NProgress.done();
                 }
-            );
+            })
 
-            function add_quantity(add_url) {
-                NProgress.start();
+        }
 
-                $.ajax({
-                    url: add_url,
-                    success: function () {
-                        $("#checkout_box").load("{% url 'restaurant_detail' restaurant.id%} #checkout_box", function () {
-                            NProgress.done();
-                        });
-                    },
-                    error: function () {
-                        alert("Couldn't increment quantity");
+        function minus_quantity(minus_url) {
+            NProgress.start();
+            $.ajax({
+                url: minus_url,
+                success: function () {
+                    $("#checkout_box").load("{% url 'restaurant_detail' restaurant.id%} #checkout_box", function () {
                         NProgress.done();
-                    }
-                })
+                    });
+                },
+                error: function () {
+                    alert("Couldn't decrement quantity");
+                    NProgress.done();
+                }
+            })
+        }
 
-            }
-
-            function minus_quantity(minus_url) {
-                NProgress.start();
-                $.ajax({
-                    url: minus_url,
-                    success: function () {
-                        $("#checkout_box").load("{% url 'restaurant_detail' restaurant.id%} #checkout_box", function () {
-                            NProgress.done();
-                        });
-                    },
-                    error: function () {
-                        alert("Couldn't decrement quantity");
+        function AjaxAdd(add_url) {
+            NProgress.start();
+            $.ajax({
+                url: add_url,
+                success: function (response) {
+                    $("#checkout_box").load("{% url 'restaurant_detail' restaurant.id%} #checkout_box", function () {
                         NProgress.done();
-                    }
-                })
-            }
+                    });
+                },
+                error: function (error, data) {
+                    showM();
+                    NProgress.done();
+                }
+            })
 
-            function AjaxAdd(add_url) {
-                NProgress.start();
-                $.ajax({
-                    url: add_url,
-                    success: function (response) {
-                        $("#checkout_box").load("{% url 'restaurant_detail' restaurant.id%} #checkout_box", function () {
-                            NProgress.done();
-                        });
-                    },
-                    error: function () {
-                        alert("Couldn't add item");
+        }
+
+        function openNewCart(url) {
+            $.ajax({
+                url: url,
+                success: function (response) {
+                    $("#main_box").load("{% url 'restaurant_detail' restaurant.id%} #main_box", function () {
                         NProgress.done();
-                    }
-                })
+                    });
+                    hideM();
+                },
+                error: function (error, data) {
+                    showM();
+                    NProgress.done();
+                    hideM();
+                }
+            });
 
-            }
+        }
 
-            function AjaxRemove(remove_url, id) {
-                NProgress.start();
-                $.ajax({
-                    url: remove_url,
-                    success: function (response) {
-                        $('#' + id).slideUp(500);
+        function AjaxRemove(remove_url, id) {
+            NProgress.start();
+            $.ajax({
+                url: remove_url,
+                success: function (response) {
+                    $('#' + id).slideUp(500);
+                    NProgress.done();
+                    $("#remove_alert").fadeTo(2000, 500).slideUp(500, function () {
+                        $("#remove_alert").slideUp(500);
+                    });
+                    $("#checkout_box").load("{% url 'restaurant_detail' restaurant.id%} #checkout_box", function () {
                         NProgress.done();
-                        $("#remove_alert").fadeTo(2000, 500).slideUp(500, function () {
-                            $("#remove_alert").slideUp(500);
-                        });
-                        $("#checkout_box").load("{% url 'restaurant_detail' restaurant.id%} #checkout_box", function () {
-                            NProgress.done();
-                        });
-                    },
-                    error: function () {
-                        alert("Couldn't remove item");
-                        NProgress.done();
-                    }
-                })
-            }
+                    });
+                },
+                error: function () {
+                    alert("Couldn't remove item");
+                    NProgress.done();
+                }
+            })
+        }
 
-        </script>
-    {% endblock %}
+    </script>
+{% endblock %}
+{% block modal %}
+    <!-- Modal -->
+    <div class="modal fade" id="cartModel" tabindex="-1" role="dialog"
+         aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">FoodMax Cart Service</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    You have an existing cart with ({% for i in restaurant_selected_cart_detail %}{{ i }}{% endfor %})
+                    Do
+                    you want to open a new cart
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary"
+                            onclick="openNewCart('{% url 'new_cart' %}?dr={{ restaurant.id }}')">Open New Cart
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}

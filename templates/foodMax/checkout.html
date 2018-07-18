@@ -10,17 +10,18 @@
 
 
 {% for item in cart.items %}
-    {{ item.product.name }}
-    {{ item.quantity }}
-    {{ item.subtotal }}
+    Item name = {{ item.product.name }}<br/>
+    Item quantity = {{ item.quantity }}<br/>
+    Item total = {{ item.subtotal }}<br/>
+    Item restaurant ={% for restaurant in restaurant %} {{ restaurant }}{% endfor %}<br/><br/>
+
 {% endfor %}
-
-
+<br/>
 
 
 You can also use this convinent shortcut:
-{% for product in cart.products %}
-    {{ product.name }}
-{% endfor %}
+{#{% for product in cart.products %}#}
+{#    {{ product.name }}#}
+{#{% endfor %}#}
 </body>
 </html>

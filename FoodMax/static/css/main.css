@@ -2914,7 +2914,8 @@ body.mobile-nav-active #mobile-nav-toggle {
     background: #ffffff;
     transition: 0.3s;
     font-family: "Poppins", sans-serif;
-    border-radius: 5px; /* 5px rounded corners */
+    -moz-border-radius-topleft: 5px; /* 5px rounded corners */
+    -moz-border-radius-topright: 5px; /* 5px rounded corners */
 }
 
 /* Add some padding inside the card container */
@@ -2932,6 +2933,7 @@ body.mobile-nav-active #mobile-nav-toggle {
     font-weight: bolder;
     color: #2e2e2e;
     font-family: "Poppins", sans-serif;
+    margin-top: 20px;
 }
 
 .j_card_header {
@@ -2961,7 +2963,8 @@ body.mobile-nav-active #mobile-nav-toggle {
     z-index: unset;
     margin-bottom: -17px;
     font-family: "Poppins", sans-serif;
-    border-radius: 5px; /* 5px rounded corners */
+    -moz-border-radius-bottomleft: 5px; /* 5px rounded corners */
+    -moz-border-radius-bottomright: 5px; /* 5px rounded corners */
 }
 
 .add_quantity {
@@ -2988,6 +2991,7 @@ body.mobile-nav-active #mobile-nav-toggle {
     padding-top: 30px;
     padding-bottom: 30px;
 }
-.unset_z{
+
+.unset_z {
     z-index: unset !important;
 }
