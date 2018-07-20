@@ -1,27 +1,122 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-{% load carton_tags %}
-{% get_cart as cart %}
+{% extends 'foodMax/base_generic.html' %}
+{% load static %}
+{% load humanize %}
+{% block body %}
+    {% load carton_tags %}
+    {% get_cart as cart %}
+
+    <section class="generic-banner relative"
+             style="height:310px !important;background: #f42f2c url({% static 'img/new.jpg' %}) right;">
+        <div class="container">
+            <div class="row  align-items-center justify-content-center" style="padding-top:100px;">
+                <div class="col-lg-10">
+                    <div id="rest_found" class="generic-banner-content">
+                        <h2 style="font-size: 40px !important;" class=" text-white">Checkout Now
+                            {% for restaurant in restaurant %} {{ restaurant }}{% endfor %}</h2>
+                        <p style="font-size: 20px !important;" class="text-white">Review our items and click on proceed
+                            once you are done.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End banner Area -->
+
+    <!-- About Generic Start -->
+    <div class="main-wrapper">
+        <!-- Start team Area -->
+        <section class="team-area pt-100" id="team" style="margin-top: -50px">
+            <div class="container">
+                <nav aria-label="breadcrumb" style="font-size: 13px;margin-left: -12px;">
+                    <ol class="breadcrumb" style="background: #f9f9ff">
+                        <li class="breadcrumb-item"><a style="color: #000" href="{% url 'home' %}">Home</a></li>
+                        <li class="breadcrumb-item" aria-current="page">Restaurants</li>
+                        <li class="breadcrumb-item" aria-current="page">
+                            {% for i in restaurant %}{{ i }}{% endfor %}</li>
+                        <li class="breadcrumb-item text-danger active" aria-current="page">Checkout</li>
+
+                    </ol>
+                </nav>
+                <h3 class="mb-30">{% for restaurant in restaurant %} {{ restaurant }}{% endfor %}</h3>
+            </div>
+
+            <div class="container">
+                <div class="row">
+                    {% if cart.items %}<div class="col-md-8">{% else %}<div class="col-md-8">{% endif %}
+                        {% if cart.items %}
+                            <div class="checkout_box table-responsive-md">
+                            <table class="table table-hover" id="cost_container">
+                            <thead>
+                            <tr class="j_font">
+                                <th scope="col">#</th>
+                                <th scope="col">Dish Name</th>
+                                <th scope="col">Quantity</th>
+                                <th scope="col">&#8358; Price</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+
+                            {% for item in cart.items %}
+                                <tr>
+                                    <th scope="row">{{ forloop.counter }}</th>
+                                    <td>{{ item.product.name }}</td>
+                                    <td>{{ item.quantity }}</td>
+                                    <td>{{ item.subtotal|intcomma }}</td>
+                                    <td><span
+                                            onclick='AjaxRemove("{% url 'remove_from_cart' %}?dish_id={{ item.product.id }}",{{ item.product.id }})'><i
+                                            class="fa fa-remove"></i></span></td>
+                                </tr>
+                            {% endfor %}
+                        {% else %}
+                            <div class="checkout_box">
+                                <h3>There are no items in your cart</h3>
+                            </div>
+                        {% endif %}
+                        </tbody>
+                        </table>
+                        </div>
 
 
-{% for item in cart.items %}
-    Item name = {{ item.product.name }}<br/>
-    Item quantity = {{ item.quantity }}<br/>
-    Item total = {{ item.subtotal }}<br/>
-    Item restaurant ={% for restaurant in restaurant %} {{ restaurant }}{% endfor %}<br/><br/>
+                    </div>
+                    <div class="col-md-4">
+                        {% if cart.items %}
+                            <div class="checkout_box">
+                                <h4>Total Price :</h4>
+                                <br/>
+                                <p style="font-size: 42px; color: #000">&#8358;{{ cart.total|intcomma }}</p>
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+                <br/>
+            </div>
+        </section>
+    </div>
 
-{% endfor %}
-<br/>
 
+{% endblock %}
+{% block script %}
+    <script>
+        function AjaxRemove(remove_url, id) {
 
-You can also use this convinent shortcut:
-{#{% for product in cart.products %}#}
-{#    {{ product.name }}#}
-{#{% endfor %}#}
-</body>
-</html>
+            {#NProgress.start();#}
+            $.ajax({
+                url: remove_url,
+                success: function (response) {
+                    $('#' + id).slideUp(500);
+                    {#NProgress.done();#}
+                    $("#remove_alert").fadeTo(2000, 500).slideUp(500, function () {
+                        $("#remove_alert").slideUp(500);
+                    });
+                    $("#cost_container").load("{% url 'checkout' %} #cost_container", function () {
+                        {#NProgress.done();#}
+                    });
+                },
+                error: function () {
+                    alert("Couldn't remove item");
+                    {#NProgress.done();#}
+                }
+            })
+        }
+    </script>
+{% endblock %}

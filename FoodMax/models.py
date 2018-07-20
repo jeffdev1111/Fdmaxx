@@ -41,6 +41,8 @@ class Menu(models.Model):
     def __str__(self):
         return self.name
 
+    class Meta:
+        ordering = ['name']
 
 class Submenu(models.Model):
     name = models.CharField(max_length=300, help_text="Enter the dish name")

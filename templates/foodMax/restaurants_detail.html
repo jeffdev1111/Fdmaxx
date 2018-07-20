@@ -55,11 +55,11 @@
             <div class="container">
                 <nav aria-label="breadcrumb" style="font-size: 13px; margin-left: -12px;">
                     <ol class="breadcrumb" style="background: #f9f9ff">
-                        <li class="breadcrumb-item"><a class="text-danger" href="{% url 'home' %}">Home</a></li>
+                        <li class="breadcrumb-item"><a style="color: #000" href="{% url 'home' %}">Home</a></li>
                         <li class="breadcrumb-item" onclick="history.back()" aria-current="page"><a href="#"
-                                                                                                    class="text-danger">Restaurants</a>
+                                                                                                    style="color: #000">Restaurants</a>
                         </li>
-                        <li class="breadcrumb-item active" aria-current="page">{{ restaurant }}</li>
+                        <li class="breadcrumb-item text-danger active" aria-current="page">{{ restaurant }}</li>
                     </ol>
                 </nav>
                 <div class="row">
@@ -104,7 +104,7 @@
                     <div class="col-md-4"
                          style="margin-top: 60px; {% if check == False %}display:none{% else %}{% endif %}">
                         <div class="sticky-top j_card_header" style="top: 120px;">
-                            <a href="{% url 'email_order' %}?restaurant={{ restaurant.id }}"
+                            <a href="{% if cart.total != 0 %}{% url 'checkout' %}{% else %}#{% endif %}"
                                class="genric-btn primary radius  text-white"
                                style="width: 100%; top:120px; background: #dc3545 !important; font-size: 16px">Checkout</a>
                             <hr style="margin-bottom: -48px;"/>
@@ -164,8 +164,8 @@
                     </div>
                 </div>
 
-
-                <br/>
+            </div>
+            <br/>
         </section>
     </div>
 

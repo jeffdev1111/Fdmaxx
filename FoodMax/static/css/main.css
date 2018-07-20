@@ -2995,3 +2995,25 @@ body.mobile-nav-active #mobile-nav-toggle {
 .unset_z {
     z-index: unset !important;
 }
+
+.checkout_box {
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+#checkout_items > li {
+    display: inline-block ;
+}
+.gap{
+    margin-left: 40px;
+}
+.j_font{
+    font-family: "Poppins", sans-serif;
+        font-weight: 500;
+    text-transform: uppercase;
+    line-height: 40px;
+    color: #222;
+    font-size: 14px;
+    border-top: none;
+}

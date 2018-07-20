@@ -1,8 +1,10 @@
 import json
 
 from django.core.mail import send_mail
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, redirect, get_object_or_404
+from django.views import generic
+
 from .models import *
 from carton.cart import Cart
 
@@ -16,6 +18,20 @@ def index(request):
         'coverage': coverage,
         'dish': dish
     })
+
+
+class LocationList(generic.ListView):
+    model = Coverage
+
+    def get(self, request, **kwargs):
+        coverage = Coverage.objects.all()
+        return render(request, self.template_name,
+                      {'coverage': coverage})
+
+    def post(self, request, **kwargs):
+        return redirect('restaurant')
+
+    template_name = 'foodMax/index.html'
 
 
 def restaurants(request):
@@ -56,7 +72,7 @@ def restaurants_detail(request, pk):
         'coverageDetail': coverageDetail,
         'cart': cart,
         'price': price,
-        'check':check,
+        'check': check,
         'restaurant_selected_cart': restaurant_selected_cart,
         'restaurant_selected_cart_detail': restaurant_selected_cart_detail,
     })
@@ -124,11 +140,13 @@ def email_order(request):
 
 
 def checkout(request):
+    cart = Cart(request.session)
     restaurant_selected_cart = request.session.get('restaurant_cart')
     restaurant = Restaurant.objects.filter(id=restaurant_selected_cart)
     return render(request, 'foodMax/checkout.html', context={
         'restaurant_selected_cart': restaurant_selected_cart,
-        'restaurant': restaurant
+        'restaurant': restaurant,
+        'cart':cart,
     })
 
 
