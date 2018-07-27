@@ -1,0 +1,136 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="zxx" class="no-js">
+<head>
+    <!-- Mobile Specific Meta -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Favicon-->
+    {#    todo:here#}
+    <link rel="shortcut icon" href="#">
+    <!-- Author Meta -->
+    <meta name="author" content="codepixer">
+    <!-- Meta Description -->
+    <meta name="description" content="">
+    <!-- Meta Keyword -->
+    <meta name="keywords" content="">
+    <!-- meta character set -->
+    <meta charset="UTF-8">
+    <!-- Site Title -->
+    <title>Harlie | FoodMax Food Delivery</title>
+    <link href="https://fonts.googleapis.com/css?family=Dosis:200" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,400,300,500,600,700" rel="stylesheet">
+    <!--
+    CSS
+    ============================================= -->
+    <link rel="stylesheet" href="{% static 'css/linearicons.css' %}">
+    <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'css/magnific-popup.css' %}">
+    <link rel="stylesheet" href="{% static 'css/nice-select.css' %}">
+    <link rel="stylesheet" href="{% static 'css/animate.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/harlie_style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/owl.carousel.css' %}">
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+    <link rel="stylesheet" href="https://unpkg.com/nprogress@0.2.0/nprogress.css">
+    <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"
+            integrity="sha384-SlE991lGASHoBfWbelyBPLsUlwY1GwNDJo3jSJO04KZ33K2bwfV9YBauFfnzvynJ"
+            crossorigin="anonymous"></script>
+    <script src='https://code.responsivevoice.org/responsivevoice.js'></script>
+</head>
+<header id="header">
+    <div class="container">
+        <div class="row align-items-center justify-content-between d-flex">
+            <div id="logo">
+                <a href="index.html"><img src="{% static 'img/harlie.png' %}" height="40px;" alt="" title=""/></a>
+            </div>
+            <nav id="nav-menu-container">
+                <ul class="nav-menu">
+                    <li><a href="{% url 'home' %}">Home</a></li>
+                    <li class="menu-active"><a href="{% url 'harlie' %}">Harlie</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    <li class="menu-has-children"><a href="">Account</a>
+                        <ul>
+                            <li><a href="#">Login</a></li>
+                            <li><a href="#">Register</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav><!-- #nav-menu-container -->
+        </div>
+    </div>
+</header><!-- #header -->
+<body>
+
+<div class="split left">
+    <div class="centered">
+        <img src="{% static 'img/harlie_img.png' %}" alt="Avatar woman">
+        <h2 class="harlie_text">Meet Harlie</h2>
+        <p class="harlie_text_2">I am here for you, and I would take all your orders.</p>
+    </div>
+    <div class="container" style="position: relative; top: 90%;left: 28%; color: #fff">
+        <p> &copy; 2018 FoodMaxx - Product of JayTechx</p>
+    </div>
+</div>
+
+<div class="split right">
+    <div id="chatBoard">
+        <p class="ai">Hello there! what do you crave <span class="timeb" id="timeb"></span></p>
+
+    </div>
+
+
+    <div class="container-fluid" id="fdmx">
+        <div id="chatNavCover">
+            <form onsubmit="return false" autocomplete="off">
+                <input type="text" id="chatBox" autocomplete="off" autofocus placeholder="Type a message"/>
+                <span id="voice" onclick="recognition.start();">
+            <i class="fas fa-microphone"></i>
+          </span>
+                <button type="submit" id="submit">
+                    <i class="fas fa-sign-in-alt"></i>
+                </button>
+            </form>
+        </div>
+    </div><!-- /.container-fluid -->
+
+</div>
+
+</body>
+
+<script src="{% static 'js/vendor/jquery-2.2.4.min.js' %}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+<script src="{% static 'js/vendor/bootstrap.min.js' %}"></script>
+<script type="text/javascript"
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBhOdIF3Y9382fqJYt5I_sswSrEw5eihAA"></script>
+
+<script src="{% static 'js/easing.min.js' %}"></script>
+<script src="{% static 'js/scrollspy.min.js' %}"></script>
+<script src="{% static 'js/hoverIntent.js' %}"></script>
+<script src="{% static 'js/superfish.js' %}"></script>
+<script src="{% static 'js/jquery.ajaxchimp.min.js' %}"></script>
+<script src="{% static 'js/jquery.magnific-popup.min.js' %}"></script>
+<script src="{% static 'js/owl.carousel.min.js' %}"></script>
+<script src="{% static 'js/jquery.sticky.js' %}"></script>
+<script src="{% static 'js/jquery.nice-select.min.js' %}"></script>
+<script src="{% static 'js/parallax.min.js' %}"></script>
+<script src="{% static 'js/harlie_main.js' %}"></script>
+<script src="{% static 'js/harlie_response.js' %}"></script>
+<script src="{% static 'js/harlie_listen.js' %}"></script>
+
+<script src="https://unpkg.com/nprogress@0.2.0/nprogress.js"></script>
+<script src="{% static 'js/main.js' %}"></script>
+
+<script type="text/javascript">
+    function googleTranslateElementInit() {
+        new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+    }
+</script>
+
+<script type="text/javascript"
+        src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+{% block script %}
+{% endblock %}
+</html>

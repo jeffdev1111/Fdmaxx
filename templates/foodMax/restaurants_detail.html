@@ -59,7 +59,7 @@
                         <li class="breadcrumb-item" onclick="history.back()" aria-current="page"><a href="#"
                                                                                                     style="color: #000">Restaurants</a>
                         </li>
-                        <li class="breadcrumb-item text-danger active" aria-current="page">{{ restaurant }}</li>
+                        <li class="breadcrumb-item foodmax_color active" aria-current="page">{{ restaurant }}</li>
                     </ol>
                 </nav>
                 <div class="row">
@@ -81,11 +81,11 @@
                                         <div class="col-md-8">
                                             <br/>
                                             <p id="{{ sub.id }}{{ menu.name }}_menu_name"
-                                               class="dish_header text-danger">{{ sub.name }} - Meal</p>
+                                               class="dish_header foodmax_color">{{ sub.name }} - Meal</p>
                                             <p>Price : &#8358;{{ sub.price|intcomma }}</p>
 
                                         </div>
-                                        <div class="col-md-4 col-sm-6 text-danger">
+                                        <div class="col-md-4 col-sm-6 foodmax_color">
                                             <img src="{{ sub.dish_image.url }}"
                                                  style="height: 80px; width: 100%;background-position: center center;">
                                         </div>
@@ -104,9 +104,9 @@
                     <div class="col-md-4"
                          style="margin-top: 60px; {% if check == False %}display:none{% else %}{% endif %}">
                         <div class="sticky-top j_card_header" style="top: 120px;">
-                            <a href="{% if cart.total != 0 %}{% url 'checkout' %}{% else %}#{% endif %}"
-                               class="genric-btn primary radius  text-white"
-                               style="width: 100%; top:120px; background: #dc3545 !important; font-size: 16px">Checkout</a>
+                            <a href="{% url 'checkout' %}"
+                               class="genric-btn primary radius   text-white"
+                               style="width: 100%; top:120px; font-size: 16px">Checkout</a>
                             <hr style="margin-bottom: -48px;"/>
                             <br/>
 
@@ -120,12 +120,12 @@
                                             <div class="row" style="margin-bottom: 10px;">
                                                 <div class="col-md-4">
                                                     <div style="margin-left: 5px">
-                                                        <span onclick="minus_quantity('{% url 'minus_quantity' %}?dish_id={{ item.product.id }}&quantity={{ item.quantity }}')"
-                                                              style="color: #dc3545"><i
+                                                        <span class="foodmax_color" onclick="minus_quantity('{% url 'minus_quantity' %}?dish_id={{ item.product.id }}&quantity={{ item.quantity }}')"
+                                                              ><i
                                                                 class="fa fa-minus-circle"></i></span><span
-                                                            style="padding: 10px;">{{ item.quantity }}</span><span
+                                                            style="padding: 10px;">{{ item.quantity }}</span><span class="foodmax_color"
                                                             onclick="add_quantity('{% url 'add_quantity' %}?dish_id={{ item.product.id }}&quantity={{ item.quantity }}')"
-                                                            style="color: #dc3545"><i
+                                                            ><i
                                                             class="fa fa-plus-circle"></i></span>
                                                     </div>
                                                 </div>

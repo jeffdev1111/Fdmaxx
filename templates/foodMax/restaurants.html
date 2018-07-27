@@ -2,7 +2,7 @@
 {% load static %}
 {% block body %}
     <section class="generic-banner relative"
-             style="height:310px !important;background: #f42f2c url({% static 'img/new.jpg' %}) right;">
+             style="height:310px !important;background: #33dc4b url({% static 'img/new.jpg' %}) right;">
         <div class="container">
             <div class="row  align-items-center justify-content-center" style="padding-top:100px;">
                 <div class="col-lg-10">
@@ -15,13 +15,13 @@
                         <div style="display: inline-block">
                             <p class="text-white"><i class="fa fa-map-marker" aria-hidden="true"></i> {{ search_word }}
                             </p>
-                            <a onclick="change_location()" href="#" class="genric-btn danger-border">Change Location</a>
+                            <a onclick="change_location()" href="#" class="genric-btn foodmax_border">Change Location</a>
                         </div>
                     </div>
                     <div class="generic-banner-content" id="new_location" style="display: none">
                         <h2 style="color: #fff">Select your location</h2>
                         <div class="input-group-icon mt-10">
-                            <div class="icon"><i class="fa fa-map-marker text-danger" aria-hidden="true"></i></div>
+                            <div class="icon"><i class="fa fa-map-marker foodmax_color" aria-hidden="true"></i></div>
                             <div class="form-select" id="default-select">
                                 <form id="#rest" method="post" action="{% url 'restaurant' %} ">
                                     {% csrf_token %}
@@ -32,7 +32,7 @@
                                             {% endfor %}
                                         {% endif %}
                                     </select>
-                                    <input type="submit" class="genric-btn danger-border text-uppercase"
+                                    <input type="submit" class="genric-btn foodmax_border text-uppercase"
                                            style="margin-top: 20px; text-align: center" value="Find restaurants"/>
                                 </form>
                             </div>
@@ -53,7 +53,7 @@
                 <nav aria-label="breadcrumb" style="font-size: 13px;margin-left: -12px;">
                     <ol class="breadcrumb" style="background: #f9f9ff">
                         <li class="breadcrumb-item"><a style="color: #000" href="{% url 'home' %}">Home</a></li>
-                        <li class="breadcrumb-item text-danger active" aria-current="page">Restaurants</li>
+                        <li class="breadcrumb-item foodmax_color " aria-current="page">Restaurants</li>
                     </ol>
                 </nav>
                 <h3 class="mb-30">{{ search_word }} Restaurants</h3>
@@ -68,7 +68,7 @@
                                                                                            src="{{ restaurant.restaurant.logo.url }}"
                                                                                            style="height:250px"></a>
                         </div>
-                        <h4 class="text-uppercase pt-10 pb-0"><a class="text-danger"
+                        <h4 class="text-uppercase pt-10 pb-0"><a class="foodmax_color"
                                                                  href="{{ restaurant.restaurant.get_absolute_url }}">{{ restaurant.restaurant.name }}</a>
                         </h4>
                         <p style="padding-bottom: -6% !important;"><a class="text-muted"

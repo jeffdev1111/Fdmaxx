@@ -12,5 +12,5 @@ urlpatterns = [
     path('email/', views.email_order, name='email_order'),
     path('add_quantity/', views.add_quantity, name='add_quantity'),
     path('minus_quantity/', views.minus_quantity, name='minus_quantity'),
-
+    path('harlie', views.harlie, name='harlie'),
 ]

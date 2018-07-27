@@ -1,10 +1,10 @@
 ::-moz-selection {
-    background-color: #f42f2c;
+    background-color: #33dc4b;
     color: #fff
 }
 
 ::selection {
-    background-color: #f42f2c;
+    background-color: #33dc4b;
     color: #fff
 }
 
@@ -748,7 +748,7 @@ td, th {
 }
 
 b, sup, sub, u, del {
-    color: #f42f2c
+    color: #29dc3c;
 }
 
 h1 {
@@ -883,25 +883,25 @@ h1, h2, h3, h4, h5, h6 {
 
 .genric-btn.primary {
     color: #fff;
-    background: #f42f2c;
+    background: #33dc4b;
     border: 1px solid transparent
 }
 
 .genric-btn.primary:hover {
-    color: #f42f2c;
-    border: 1px solid #f42f2c;
+    color: #33dc4b !important;
+    border: 1px solid #33dc4b;
     background: #fff
 }
 
 .genric-btn.primary-border {
-    color: #f42f2c;
-    border: 1px solid #f42f2c;
+    color: #33dc4b;
+    border: 1px solid #33dc4b;
     background: #fff
 }
 
 .genric-btn.primary-border:hover {
     color: #fff;
-    background: #f42f2c;
+    background: #33dc4b;
     border: 1px solid transparent
 }
 
@@ -979,25 +979,25 @@ h1, h2, h3, h4, h5, h6 {
 
 .genric-btn.danger {
     color: #fff;
-    background: #f44a40;
+    background: #29dc3c;
     border: 1px solid transparent
 }
 
 .genric-btn.danger:hover {
-    color: #f44a40;
-    border: 1px solid #f44a40;
+    color: #29dc3c;
+    border: 1px solid #29dc3c;
     background: #fff
 }
 
 .genric-btn.danger-border {
-    color: #f44a40;
-    border: 1px solid #f44a40;
+    color: #29dc3c;
+    border: 1px solid #29dc3c;
     background: #fff
 }
 
 .genric-btn.danger-border:hover {
     color: #fff;
-    background: #f44a40;
+    background: #29dc3c;
     border: 1px solid transparent
 }
 
@@ -1037,7 +1037,7 @@ h1, h2, h3, h4, h5, h6 {
 .generic-blockquote {
     padding: 30px 50px 30px 30px;
     background: #f9f9ff;
-    border-left: 2px solid #f42f2c
+    border-left: 2px solid #29dc3c;
 }
 
 .progress-table-wrap {
@@ -1161,7 +1161,7 @@ h1, h2, h3, h4, h5, h6 {
     position: absolute;
     width: 14px;
     height: 14px;
-    border: 3px solid #f42f2c;
+    border: 3px solid #33dc4b;
     background: #fff;
     top: 4px;
     left: 0;
@@ -1174,7 +1174,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .ordered-list li {
     list-style-type: decimal-leading-zero;
-    color: #f42f2c;
+    color: #33dc4b;
     font-weight: 500;
     line-height: 1.82em !important
 }
@@ -1187,7 +1187,7 @@ h1, h2, h3, h4, h5, h6 {
 .ordered-list-alpha li {
     margin-left: 30px;
     list-style-type: lower-alpha;
-    color: #f42f2c;
+    color: #33dc4b;
     font-weight: 500;
     line-height: 1.82em !important
 }
@@ -1200,7 +1200,7 @@ h1, h2, h3, h4, h5, h6 {
 .ordered-list-roman li {
     margin-left: 30px;
     list-style-type: lower-roman;
-    color: #f42f2c;
+    color: #33dc4b;
     font-weight: 500;
     line-height: 1.82em !important
 }
@@ -1272,7 +1272,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .single-input-primary:focus {
     outline: none;
-    border: 1px solid #f42f2c
+    border: 1px solid #29dc3c;
 }
 
 .single-input-accent {
@@ -1333,7 +1333,7 @@ h1, h2, h3, h4, h5, h6 {
     width: 15px;
     height: 15px;
     border-radius: 50%;
-    background: #f42f2c;
+    background: #33dc4b;
     -webkit-transition: all 0.2s;
     -moz-transition: all 0.2s;
     -o-transition: all 0.2s;
@@ -1416,7 +1416,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .primary-switch input:checked + label:before {
-    background: #f42f2c
+    background: #29dc3c;
 }
 
 .confirm-switch {
@@ -1765,12 +1765,12 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .default-select .nice-select .list .option.selected {
-    color: #f42f2c;
+    color: #33dc4b;
     background: transparent
 }
 
 .default-select .nice-select .list .option:hover {
-    color: #f42f2c;
+    color: #33dc4b;
     background: transparent
 }
 
@@ -1820,12 +1820,12 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .form-select .nice-select .list .option.selected {
-    color: #f42f2c;
+    color: #33dc4b;
     background: transparent
 }
 
 .form-select .nice-select .list .option:hover {
-    color: #f42f2c;
+    color: #33dc4b;
     background: transparent
 }
 
@@ -1886,7 +1886,7 @@ h1, h2, h3, h4, h5, h6 {
 #header #logo h1 a, #header #logo h1 a:hover {
     color: #fff;
     padding-left: 10px;
-    border-left: 4px solid #f42f2c
+    border-left: 4px solid #29dc3c;
 }
 
 #header #logo img {
@@ -1986,7 +1986,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .nav-menu li:hover > a, .nav-menu > .menu-active > a {
-    color: #f42f2c
+    color: #29dc3c;
 }
 
 .nav-menu > li {
@@ -2014,7 +2014,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .nav-menu ul li:hover > a {
-    color: #f42f2c
+    color: #29dc3c;
 }
 
 .nav-menu ul ul {
@@ -2036,7 +2036,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 #mobile-nav-toggle i {
-    color: #f42f2c;
+    color: #33dc4b;
     font-weight: 900
 }
 
@@ -2105,7 +2105,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 #mobile-nav ul .menu-has-children i.fa-chevron-up {
-    color: #f42f2c
+    color: #29dc3c;
 }
 
 #mobile-nav ul .menu-has-children li a {
@@ -2113,7 +2113,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 #mobile-nav ul .menu-item-active {
-    color: #f42f2c
+    color: #29dc3c;
 }
 
 #mobile-body-overly {
@@ -2163,7 +2163,7 @@ body.mobile-nav-active #mobile-nav-toggle {
 }
 
 .primary-btn {
-    background-color: #f42f2c;
+    background-color: #33dc4b;
     line-height: 42px;
     padding-left: 30px;
     padding-right: 60px;
@@ -2218,11 +2218,11 @@ body.mobile-nav-active #mobile-nav-toggle {
 
 .primary-btn.white:hover {
     background: #fff;
-    color: #f42f2c
+    color: #29dc3c;
 }
 
 .primary-btn.white:hover span {
-    color: #f42f2c
+    color: #29dc3c;
 }
 
 .overlay {
@@ -2296,7 +2296,7 @@ body.mobile-nav-active #mobile-nav-toggle {
 }
 
 .header-btn {
-    background-color: #f42f2c;
+    background-color: #33dc4b;
     border: 1px solid transparent;
     color: #fff
 }
@@ -2327,7 +2327,7 @@ body.mobile-nav-active #mobile-nav-toggle {
 }
 
 .single-dish:hover h4 {
-    color: #f42f2c
+    color: #29dc3c;
 }
 
 @media (max-width: 800px) {
@@ -2356,7 +2356,7 @@ body.mobile-nav-active #mobile-nav-toggle {
 }
 
 .related-area .primary-btn2 {
-    background-color: #f42f2c;
+    background-color: #33dc4b;
     color: #fff
 }
 
@@ -2404,9 +2404,9 @@ body.mobile-nav-active #mobile-nav-toggle {
 }
 
 .related-area .primary-btn:hover {
-    border: 1px solid #f42f2c;
+    border: 1px solid #33dc4b;
     background-color: transparent;
-    color: #f42f2c
+    color: #29dc3c;
 }
 
 @media (max-width: 800px) {
@@ -2495,7 +2495,7 @@ body.mobile-nav-active #mobile-nav-toggle {
 }
 
 .single-blog:hover h4 {
-    color: #f42f2c
+    color: #29dc3c;
 }
 
 .single-blog img {
@@ -2652,25 +2652,25 @@ body.mobile-nav-active #mobile-nav-toggle {
 }
 
 .footer-area .number {
-    color: #f42f2c;
+    color: #33dc4b;
     font-size: 24px;
     font-weight: 600;
     line-height: 30px
 }
 
 .footer-area .genric-btn {
-    background: #f42f2c;
+    background: #33dc4b;
     border: none;
     border-radius: 57px;
     height: 36px
 }
 
 .footer-area .primary-btn {
-    background-color: #f42f2c
+    background-color: #29dc3c;
 }
 
 .footer-area .primary-btn:hover .lnr {
-    color: #f42f2c
+    color: #29dc3c;
 }
 
 .footer-area .footer-bottom {
@@ -2678,7 +2678,7 @@ body.mobile-nav-active #mobile-nav-toggle {
 }
 
 .footer-area .footer-bottom a {
-    color: #f42f2c
+    color: #29dc3c;
 }
 
 .footer-area .footer-bottom .footer-social {
@@ -2696,7 +2696,7 @@ body.mobile-nav-active #mobile-nav-toggle {
 }
 
 .footer-area .footer-bottom .footer-social a:hover {
-    background-color: #f42f2c
+    background-color: #29dc3c;
 }
 
 .footer-area .footer-bottom .footer-social i {
@@ -2745,7 +2745,7 @@ body.mobile-nav-active #mobile-nav-toggle {
 }
 
 .single-footer-widget .navbar-form .genric-btn:hover {
-    background-color: #f42f2c
+    background-color: #29dc3c;
 }
 
 .single-footer-widget .navbar-form .genric-btn:hover .lnr {
@@ -2884,7 +2884,7 @@ body.mobile-nav-active #mobile-nav-toggle {
 }
 
 .category li > a:hover {
-    color: #dc3545 !important
+    color: #29dc3c; !important
 }
 
 .dish_box {
@@ -2969,14 +2969,12 @@ body.mobile-nav-active #mobile-nav-toggle {
 
 .add_quantity {
     border: 1px solid #ffffff;
-    background: #dc3545;
     color: #ffffff;
     margin-left: 26px;
 }
 
 .minus_quantity {
     border: 1px solid #ffffff;
-    background: #dc3545;
     color: #ffffff;
     margin-left: 26px;
 }
@@ -3002,6 +3000,11 @@ body.mobile-nav-active #mobile-nav-toggle {
     border-radius: 8px;
 }
 
+.checkout_box_p {
+    padding: 20px;
+}
+
+
 #checkout_items > li {
     display: inline-block ;
 }
@@ -3016,4 +3019,22 @@ body.mobile-nav-active #mobile-nav-toggle {
     color: #222;
     font-size: 14px;
     border-top: none;
+}
+.foodmax_color{
+    color:#33dc4b !important;
+}
+.foodmax_background{
+    background:#33dc4b;
+}
+
+.foodmax_border{
+    border: 1px solid #33dc4b;
+    background: #fff;
+    color: #333333;
+}
+
+.foodmax_border:hover{
+    color: #fff;
+    background: #33dc4b;
+    border: 1px solid transparent
 }

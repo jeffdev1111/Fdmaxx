@@ -156,3 +156,6 @@ def newCart(request):
     request.session['restaurant_cart'] = restaurant
     cart.clear()
     return HttpResponse("New cart created")
+
+def harlie(request):
+    return render(request,'foodMax/harlie.html')

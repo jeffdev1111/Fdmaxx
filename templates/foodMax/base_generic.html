@@ -28,6 +28,7 @@
     <link rel="stylesheet" href="{% static 'css/magnific-popup.css' %}">
     <link rel="stylesheet" href="{% static 'css/nice-select.css' %}">
     <link rel="stylesheet" href="{% static 'css/animate.min.css' %}">
+    {% block additional_style %}{% endblock %}
     <link rel="stylesheet" href="{% static 'css/owl.carousel.css' %}">
     <link rel="stylesheet" href="{% static 'css/main.css' %}">
     <link rel="stylesheet" href="https://unpkg.com/nprogress@0.2.0/nprogress.css">
@@ -36,19 +37,17 @@
     <div class="container">
         <div class="row align-items-center justify-content-between d-flex">
             <div id="logo">
-                <a href="index.html"><img src="{% static 'img/logo.png' %}" alt="" title=""/></a>
+                <a href="index.html"><img src="{% static 'img/design.png' %}" height="40px;" alt="" title=""/></a>
             </div>
             <nav id="nav-menu-container">
                 <ul class="nav-menu">
-                    <li class="menu-active"><a href="#home">Home</a></li>
-                    <li><a href="#dish">Dish</a></li>
-                    <li><a href="#chefs">Chefs</a></li>
-                    <li><a href="#blog">Blog</a></li>
+                    <li class="menu-active"><a href="{% url 'home' %}">Home</a></li>
+                    <li><a href="{% url 'harlie' %}">Harlie</a></li>
                     <li><a href="#contact">Contact</a></li>
-                    <li class="menu-has-children"><a href="">Pages</a>
+                    <li class="menu-has-children"><a href="">Account</a>
                         <ul>
-                            <li><a href="#">Generic</a></li>
-                            <li><a href="#">Elements</a></li>
+                            <li><a href="#">Login</a></li>
+                            <li><a href="#">Register</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -118,7 +117,7 @@
             <div id="google_translate_element"></div>
             <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
             <p class="footer-text m-0">Copyright &copy;<script>document.write(new Date().getFullYear());</script>
-                All rights reserved <i class="fa fa-heart-o" aria-hidden="true"></i>
+                All rights reserved  -
                 <a href="https://colorlib.com" target="_blank">FoodMax product of Jaytechx limited</a></p>
             <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
             <div class="footer-social d-flex align-items-center">

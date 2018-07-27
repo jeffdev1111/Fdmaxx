@@ -40,41 +40,43 @@
                 <h3 class="mb-30">{% for restaurant in restaurant %} {{ restaurant }}{% endfor %}</h3>
             </div>
 
-            <div class="container">
+            <div class="container" id="cost_container">
                 <div class="row">
-                    {% if cart.items %}<div class="col-md-8">{% else %}<div class="col-md-8">{% endif %}
-                        {% if cart.items %}
-                            <div class="checkout_box table-responsive-md">
-                            <table class="table table-hover" id="cost_container">
-                            <thead>
-                            <tr class="j_font">
-                                <th scope="col">#</th>
-                                <th scope="col">Dish Name</th>
-                                <th scope="col">Quantity</th>
-                                <th scope="col">&#8358; Price</th>
-                            </tr>
-                            </thead>
-                            <tbody>
+                    {% if cart.items %}
+                        <div class="col-md-8">{% else %}
+                        <div class="col-md-8">{% endif %}
+                    {% if cart.items %}
+                        <div class="checkout_box table-responsive-md" >
+                        <table class="table table-hover">
+                        <thead>
+                        <tr class="j_font">
+                            <th scope="col">#</th>
+                            <th scope="col">Dish Name</th>
+                            <th scope="col">Quantity</th>
+                            <th scope="col">&#8358; Price</th>
+                        </tr>
+                        </thead>
+                        <tbody>
 
-                            {% for item in cart.items %}
-                                <tr>
-                                    <th scope="row">{{ forloop.counter }}</th>
-                                    <td>{{ item.product.name }}</td>
-                                    <td>{{ item.quantity }}</td>
-                                    <td>{{ item.subtotal|intcomma }}</td>
-                                    <td><span
-                                            onclick='AjaxRemove("{% url 'remove_from_cart' %}?dish_id={{ item.product.id }}",{{ item.product.id }})'><i
-                                            class="fa fa-remove"></i></span></td>
-                                </tr>
-                            {% endfor %}
-                        {% else %}
-                            <div class="checkout_box">
-                                <h3>There are no items in your cart</h3>
-                            </div>
-                        {% endif %}
-                        </tbody>
-                        </table>
+                        {% for item in cart.items %}
+                            <tr>
+                                <th scope="row">{{ forloop.counter }}</th>
+                                <td>{{ item.product.name }}</td>
+                                <td>{{ item.quantity }}</td>
+                                <td>{{ item.subtotal|intcomma }}</td>
+                                <td><span
+                                        onclick='AjaxRemove("{% url 'remove_from_cart' %}?dish_id={{ item.product.id }}",{{ item.product.id }})'><i
+                                        class="fa fa-remove"></i></span></td>
+                            </tr>
+                        {% endfor %}
+                    {% else %}
+                        <div class="checkout_box">
+                            <h3>There are no items in your cart</h3>
                         </div>
+                    {% endif %}
+                    </tbody>
+                    </table>
+                    </div>
 
 
                     </div>
@@ -85,10 +87,16 @@
                                 <br/>
                                 <p style="font-size: 42px; color: #000">&#8358;{{ cart.total|intcomma }}</p>
                             </div>
+                            <div>
+                                <a href="#"
+                               class="genric-btn radius  text-white"
+                               style="width: 100%; top:120px; background: #33dc4b !important; font-size: 16px">Pay with Mastercard</a>
+                            </div>
                         {% endif %}
                     </div>
+                    </div>
+                    <br/>
                 </div>
-                <br/>
             </div>
         </section>
     </div>
@@ -99,22 +107,22 @@
     <script>
         function AjaxRemove(remove_url, id) {
 
-            {#NProgress.start();#}
+            NProgress.start();
             $.ajax({
                 url: remove_url,
                 success: function (response) {
                     $('#' + id).slideUp(500);
-                    {#NProgress.done();#}
+                    NProgress.done();
                     $("#remove_alert").fadeTo(2000, 500).slideUp(500, function () {
                         $("#remove_alert").slideUp(500);
                     });
                     $("#cost_container").load("{% url 'checkout' %} #cost_container", function () {
-                        {#NProgress.done();#}
+                        NProgress.done();
                     });
                 },
                 error: function () {
                     alert("Couldn't remove item");
-                    {#NProgress.done();#}
+                    NProgress.done();
                 }
             })
         }
